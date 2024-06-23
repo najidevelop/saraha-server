@@ -53,6 +53,7 @@ integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ
 </script>
 @endif
 @yield('script')
+@yield('js')
 </body>
 
  
@@ -66,25 +67,6 @@ btn.style.height = "100px";
 
 
 </script>
-<style>
-
-.profile-login{
-display: inline-block;
-width: 55px;
-height: 55px;
-border-radius: 50%;
-background-color: none !important;
-padding-left: 0 !important;
-padding-right: 0 !important;
-padding-top: 0 !important;
-overflow:hidden;
-}
-
-.profile-login img{
-width: 100%;
-height: fit-content;
-
-}
-</style>
+ 
 
  

@@ -31,9 +31,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
       integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   @php
       use Carbon\Carbon;
       $time = Carbon::now();
@@ -44,6 +42,7 @@
   <link rel="stylesheet" href="{{ url('assets/site/assets') }}/css/Style_ques.css?v={{$time}}" />
   <link rel="stylesheet" href="{{ url('assets/site/assets') }}/css/style_ans.css?v={{$time}}" />
   <link rel="stylesheet" href="{{ url('assets/site/assets') }}/css/styleNews.css?v={{$time}}" />
+@yield('css')
   <!--<script src="https://kit.fontawesome.com/c7392f690f.js" crossorigin="anonymous"></script>-->
  
 </head>

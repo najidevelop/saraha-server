@@ -1012,6 +1012,13 @@ transition:all .5s;
     display: block;
     margin-top: .5rem;
     background-color: #F2AF2F;
+
+}
+.info_into_acc::after{
+  
+    width: 100%;
+   
+    
 }
 .info_uni::after{
     content: "";
@@ -1490,10 +1497,10 @@ footer .ff .text-descr {
 
 }
 @media (max-width:1032px){
-    .dropdown-menu[data-bs-popper]{
-        /*top: 48px;*/
-        /*top: 114px;*/
-    }
+    /* .dropdown-menu[data-bs-popper]{
+         top: 48px; 
+         top: 114px; 
+    } */
     .search-all{
         width: 100% !important;
         margin-top: 6rem;
@@ -1651,5 +1658,40 @@ footer .ff .text-descr {
     font-family: NotoKufiArabic;
     src:   url('../../fonts/NotoKufiArabic-VariableFont_wght.ttf');
     }
+    .profile-login{
+        display: inline-block;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background-color: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 0 !important;
+        overflow:hidden;
+        }
+        
+        .profile-login img{
+        /* width: 100%;
+        height: fit-content; */
+        width: 55px;
+        height: 55px;
+        }
+
 
 /*=================== End About Page Responsive==================*/
+ 
+.anc_country:hover{
+    color:#272727 !important;
+}
+.anc_span{
+    text-decoration:none;
+    background-color: #F2AF2F;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+    color: #fff;
+}
+.anc_span:hover{
+    color:#272727;
+}
+ 

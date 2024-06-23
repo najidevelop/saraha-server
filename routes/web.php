@@ -5,10 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\LanguageController;
-use App\Http\Controllers\Web\ProjectController;
-
-use App\Http\Controllers\Web\LangProjectController;
-use App\Http\Controllers\Web\MediaProjectController;
+  
 use App\Http\Controllers\Web\MediaStoreController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\LocationController;
@@ -17,6 +14,10 @@ use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\LangPostController;
 use  App\Http\Controllers\Web\MediaPostController;
 use  App\Http\Controllers\Web\MailController;
+use  App\Http\Controllers\Web\ClientController;
+use  App\Http\Controllers\Web\ClientAuthController;
+use  App\Http\Controllers\Web\MessageController;
+use  App\Http\Controllers\Web\SocialController;
 
 //site
 use App\Http\Controllers\HomeController;
@@ -40,7 +41,7 @@ use App\Http\Controllers\HomeController;
    
 //     });
    // Route::get('/about', [HomeController::class, 'about']);
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index'])->name('site.home');
     //selected lang
   
         // Route::get('/about', [HomeController::class, 'about']);
@@ -78,7 +79,7 @@ Route::get('/dashboard', function () {
 
 */
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
+Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
     
@@ -90,15 +91,19 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
             Route::post('/updateprofile/{id}', [UserController::class, 'updateprofile'])->name('user.updateprofile');
     
         });
-       
+       ////////////////social///////////////////////
+
+       Route::resource('social', SocialController::class, ['except' => ['update']]);
+       Route::prefix('social')->group(function () {
+           Route::post('/update/{id}', [SocialController::class, 'update'])->name('social.update');
+          
+       });
+       /////////////////////////////////////////
         Route::resource('language', LanguageController::class, ['except' => ['update']]);
         Route::prefix('language')->group(function () {
             Route::post('/update/{id}', [LanguageController::class, 'update'])->name('language.update');
             
-        });  
-
-        
-        
+        });   
         Route::prefix('mediastore')->group(function () {
             Route::get('/getbyid/{id}', [MediaStoreController::class, 'getbyid']);
             Route::delete('/destroyimage/{id}', [MediaStoreController::class, 'destroyimage']);
@@ -126,7 +131,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
             Route::get('/createsocial', [SettingController::class, 'createsocial']);
             Route::post('/storesocial', [SettingController::class, 'storesocial']);
             Route::get('/editsocial/{id}', [SettingController::class, 'editsocial']);
-            Route::post('/updatesocial/{id}', [SettingController::class, 'updatesocial']);
+          //  Route::post('/updatesocial/{id}', [SettingController::class, 'updatesocial']);
             Route::delete('/delsocial/{id}', [SettingController::class, 'delsocial']);
             //header contact
             Route::get('/headinfo', [SettingController::class, 'getheadinfo']);
@@ -229,11 +234,37 @@ Route::middleware('auth')->group(function () {
 });
 */
 //Route::middleware(['localemiddle'])->
-Route::prefix('lang/{lang}')->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
-   // Route::get('/about', [HomeController::class, 'about']);
-    Route::get('/page/{slug}', [HomeController::class, 'getcontent']);
-    Route::get('/page/{slug}/{postslug}', [HomeController::class, 'getpostcontent']);
+// Route::prefix('lang/{lang}')->group(function () {
+//     Route::get('/', [HomeController::class, 'index']);
+//    // Route::get('/about', [HomeController::class, 'about']);
+//     Route::get('/page/{slug}', [HomeController::class, 'getcontent']);
+//     Route::get('/page/{slug}/{postslug}', [HomeController::class, 'getpostcontent']);
+// });
+Route::prefix('u')->group(function () {
+    Route::middleware('guest:client')->group(function () {
+        Route::get('/register', [ClientController::class, 'create']);
+        Route::post('/register', [ClientController::class, 'store']);
+    
+        Route::get('/login', [ClientController::class, 'showlogin'])->name('login.client');
+        Route::post('/login', [ClientController::class, 'login']);
+    });
+   //Route::post('/login', [ClientController::class, 'login']);
+ 
+
+  
+    Route::  middleware(['auth:client', 'verified'])->group(function () {
+         Route::get('/messages', [MessageController::class, 'index'])->name('mymessages');
+         Route::post('/messages', [ClientController::class, 'logout'])->name('logout.client');
+
+         Route::get('/account', [ClientController::class, 'edit'])->name('client.account');
+         Route::post('/update', [ClientController::class, 'update'])->name('client.update');
+         
+         Route::post('/delete', [ClientController::class, 'destroy']) ;
+         Route::post('/updatepass', [ClientController::class, 'updatepass'])->name('client.updatepass');
+         Route::post('/updatesocial', [ClientController::class, 'updatesocial'])->name('client.updatesocial');
+ 
+    });
 });
+
 Route::post('/sendmail', [MailController::class, 'store']);
 require __DIR__ . '/auth.php';
