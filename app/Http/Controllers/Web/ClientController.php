@@ -24,6 +24,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Web\MessageController;
+use URL;
 //use Illuminate\Support\Facades\Session;
 use Session;
 class ClientController extends Controller
@@ -145,12 +147,73 @@ $id=Auth::guard('client')->user()->id;
 $client=Client::find($id);
 $client->birthdateStr= (string)Carbon::create($client->birthdate)->format('Y-m-d');
  //return response()->json($this->getsocial($id));
-return view("site.client.edit", ["client" => $client,"socials" => $this->getsocial($id)]);
+ 
+ $client_url=$this->getclient_url($client->user_name);
+ 
+return view("site.client.edit", ["client" => $client,"socials" => $this->getsocial($id),"client_url" =>$client_url]);
    
         }else{
                return redirect()->back();
              }
        
+    }
+
+    public function send_message($slug)
+    {
+      //  if(Auth::guard('client')->check()){
+        if($slug=='account'){
+      // return redirect()->route('client.account');
+    //   return($slug);
+      return $this->edit();
+        }else if($slug=='login'){
+     return $this->showlogin();
+        }else if($slug=='register'){
+          return $this->create();
+          
+          // return redirect()->route('register.client');
+        }else if($slug=='messages'){
+        $msgctrlr=new   MessageController();
+
+          return  $msgctrlr->index();
+          
+          // return redirect()->route('register.client');
+        }else{
+          $client=Client::where('user_name',$slug)->first();
+          if($client){
+            $client_url=$this->getclient_url($client->user_name);
+            return view("site.client.sendmessage", ["client" => $client,"client_url" =>$client_url]);
+           
+        }
+ 
+ // return redirect()->route('site.home');
+}
+//$client->birthdateStr= (string)Carbon::create($client->birthdate)->format('Y-m-d');
+ //return response()->json($this->getsocial($id));
+ 
+
+ 
+
+   
+        // }else{
+        //   //not login 
+        //        return redirect()->back();
+        //      }
+       
+    }
+    public function getclient_url($slug)
+    {
+    
+        /* Get Base URL using URL Facade */      
+   $url = URL::to("/");  
+   $url=$url.'/u'.'/'.$slug;
+   /* Get Base URL using url() helper */
+  //  $url2 = url('/');
+  $href = preg_replace("(^https?://)", "", $url );
+  $arr=[
+   'href_client'=>$href,
+   'link_client'=>$url,
+  ];
+      return $arr;
     }
     public function getsocial($client_id)
     {

@@ -9,29 +9,39 @@
         <div class="box-about-unviersity p-2">
             <div class="container main-about-box">
   <!-- Section atRight -->
-                <div class="box-serach-about-university p-3 m">
-                      <div class="mapp">
-                        <div class="mapouter">
-                           
-                                <div class="gmap_canvas">
-                                    <h4>{{ Auth::guard('client')->user()->name }}</h4>
-                                </div>
-                          
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="info-more">
-                        <h5>لكي تستقبل الرسائل</h5>
-                        <div class="box-right d-flex align-items-flex-start flex-column">
-                              <div class="locationn d-flex">
-                                            <i class="fa fa-facebook-f"></i>
-                                            <p> شارك حسابك على  
-                                                <span> فايسبوك  </span>                                              
-                                            </p>
-                                        </div>  
-                                    </div>
-                    </div>
+  <div class="box-serach-about-university p-3 m">
+                     
+ 
+    <div class="mapp">
+        <div class="mapouter">
+           
+                <div class="gmap_canvas">
+                    <h4>{{ Auth::guard('client')->user()->name }}</h4>
                 </div>
+          
+        </div>
+    </div>
+    <hr>
+    <div class="info-more">
+        <p><a href="{{ $client_url['link_client'] }}">{{ $client_url['href_client'] }}</a></p>
+        <h5>لكي تستقبل الرسائل</h5>
+        <div class="box-right d-flex align-items-flex-start flex-column">
+           
+           
+                   
+                        <div class="locationn d-flex">
+                            <i class="fa fa-facebook-f"></i>
+                            <p> شارك حسابك على  
+                                <span> فايسبوك  </span>                                              
+                            </p>
+                        </div>   
+                        
+
+                
+           
+        </div>
+    </div>
+</div>
                 <!-- End Section atRight -->
                 <!-- Section atLeft -->
                 <div class="background-about mm">

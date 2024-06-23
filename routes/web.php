@@ -241,18 +241,24 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/page/{slug}/{postslug}', [HomeController::class, 'getpostcontent']);
 // });
 Route::prefix('u')->group(function () {
+    Route::get('/{slug}', [ClientController::class, 'send_message']);
     Route::middleware('guest:client')->group(function () {
-        Route::get('/register', [ClientController::class, 'create']);
+        Route::get('/register', [ClientController::class, 'create'])->name('register.client');
         Route::post('/register', [ClientController::class, 'store']);
     
         Route::get('/login', [ClientController::class, 'showlogin'])->name('login.client');
         Route::post('/login', [ClientController::class, 'login']);
+       // 
+
     });
+
+    Route::post('/sendmessage', [MessageController::class, 'store']);
    //Route::post('/login', [ClientController::class, 'login']);
  
 
   
     Route::  middleware(['auth:client', 'verified'])->group(function () {
+      //  Route::get('/{slug}', [ClientController::class, 'send_message']);
          Route::get('/messages', [MessageController::class, 'index'])->name('mymessages');
          Route::post('/messages', [ClientController::class, 'logout'])->name('logout.client');
 
@@ -262,7 +268,7 @@ Route::prefix('u')->group(function () {
          Route::post('/delete', [ClientController::class, 'destroy']) ;
          Route::post('/updatepass', [ClientController::class, 'updatepass'])->name('client.updatepass');
          Route::post('/updatesocial', [ClientController::class, 'updatesocial'])->name('client.updatesocial');
- 
+       
     });
 });
 

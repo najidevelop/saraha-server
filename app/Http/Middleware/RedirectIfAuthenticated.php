@@ -24,8 +24,9 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::HOME);
              
             }else if(Auth::guard('client')->check()){
-                return redirect('/');
-             
+                 return redirect('/');
+               // return redirect('/');
+                
             }
         }
 

@@ -28,10 +28,11 @@
                     </div>
                     <hr>
                     <div class="info-more">
+                        <p><a href="{{ $client_url['link_client'] }}">{{ $client_url['href_client'] }}</a></p>
                         <h5>لكي تستقبل الرسائل</h5>
                         <div class="box-right d-flex align-items-flex-start flex-column">
                            
-                            
+                           
                                    
                                         <div class="locationn d-flex">
                                             <i class="fa fa-facebook-f"></i>
@@ -84,17 +85,17 @@
                                 @csrf
                                  <div class="row  ">         
                                     <div class="row " style="margin-bottom: 10px;">                                       
-                                        <label for="" class="col-md-3 control-label">كلمة المرور القديمة</label>
+                                        <label for="old_password" class="col-md-3 control-label">كلمة المرور القديمة</label>
                                         <div class="col-md-9">
-                                        <input type="password" class="form-control" name="old_password" placeholder=""
+                                        <input type="password" class="form-control" name="old_password" id="old_password"  placeholder=""
                                             aria-label="old_password">
                                         </div>
                                     </div>
 
                                     <div class="row form-group " style="margin-bottom: 10px;">                                
-                                        <label for="" class="col-md-3 control-label">كلمة المرور الجديدة</label>
+                                        <label for="password" class="col-md-3 control-label">كلمة المرور الجديدة</label>
                                         <div class="col-md-9">
-                                        <input type="password" class="form-control" name="password" placeholder=""
+                                        <input type="password" class="form-control" name="password" id="password" placeholder=""
                                             aria-label="password">
                                         </div> 
                                    

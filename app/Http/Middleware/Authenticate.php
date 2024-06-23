@@ -21,7 +21,8 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
 
             if (in_array('auth:client', $request->route()->middleware())) {
-                return route('login.client');
+               return route('login.client');
+             
             } else if (in_array('guest:client', $request->route()->middleware())) {
                 return route('site.home');
             // return  route('mymessages');
@@ -29,7 +30,8 @@ class Authenticate extends Middleware
                  return route('login');
               //  return  route('mymessages');
             } else {
-                return route('login.client');
+               return route('login.client');
+               // return $request->expectsJson() ? null : route('login');
             }
 
 
