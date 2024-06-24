@@ -41,7 +41,7 @@ class Client extends Authenticatable
         'country',
         'gender',
         'birthdate',
-
+        'facebook_id', 
     ];
 
     /**

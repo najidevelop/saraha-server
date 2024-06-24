@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.2024_06_17_115802_php artisan make:migration  add_link_to_socials_table
+     * Run the migrations.2024_06_17_115802_php artisan make:migration  add_facebook_id_to_clients_table
      */
     public function up(): void
     {

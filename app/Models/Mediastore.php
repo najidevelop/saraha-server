@@ -65,10 +65,10 @@ class Mediastore extends Model
        
             return  $conv;
      }
-    public function mediaprojects(): HasMany
-    {
-        return $this->hasMany(MediaProject::class,'media_id');
-    }
+    // public function mediaprojects(): HasMany
+    // {
+    //     return $this->hasMany(MediaProject::class,'media_id');
+    // }
      
     public function mediaposts(): HasMany
     {
