@@ -153,7 +153,7 @@ $client->birthdateStr= (string)Carbon::create($client->birthdate)->format('Y-m-d
 return view("site.client.edit", ["client" => $client,"socials" => $this->getsocial($id),"client_url" =>$client_url]);
    
         }else{
-               return redirect()->back();
+               return redirect()->route('login.client');
              }
        
     }

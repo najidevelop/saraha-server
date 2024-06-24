@@ -26,9 +26,9 @@ protected $alphaAtexpr='/^[\pL\s\_\-\@\.\0-9]+$/u';
       
        return[
        
-           'content'=>'required|string',   
+         //  'content'=>'nullable|string',   
         
-        'file'=>'nullable|file',   
+      //  'file'=>'nullable|file',   
        ];   
     
     }

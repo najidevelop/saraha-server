@@ -24,6 +24,8 @@ class StorageController extends Controller
   public $recordpath = [];
   public $vidpath = [];
   public $pdfpath = [];
+  public $soundpath = [];
+  
   private $defaultimage = "default.png";
   private $defaultsvg = "default.svg";
   public function __construct()
@@ -55,6 +57,11 @@ class StorageController extends Controller
 
     $this->pdfpath['categories'] = 'images/categories/pdf';
     $this->pdfpath['posts'] = 'images/posts/pdf';
+    //messages
+    $this->path['messages'] = 'images/messages';
+    $this->vidpath['messages'] = 'images/messages/video';
+    $this->soundpath['messages'] = 'images/messages/sound';
+    
     
     //value
  
@@ -224,7 +231,19 @@ class StorageController extends Controller
   }
 }
   
-
+public function MessagePath($type)
+  { //image sound video
+    $url = "";
+    if ($type == "image") {    
+       $url =  $this->getlocalpath($this->path['messages']);      
+    }else if($type == "sound"){
+      $url =  $this->getlocalpath($this->pdfpath['messages']);   
+    } else {
+      //video 
+       $url =  $this->getlocalpath($this->vidpath['messages']);
+    }
+    return $url;
+  }
  /*
   public static function CalcPercentVal($percent,$total)
   {
