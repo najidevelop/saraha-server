@@ -8,7 +8,7 @@
               aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="display: flex;justify-content: space-between;">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="width:100% ">
               <div class="navbar-nav" style="width:auto;">
                   <a class="nav-link active" aria-current="page" href="{{ url('/') }}">الرئيسية</a>
                   {{-- <a class="nav-link menu-search" aria-current="page" href="{{ route('page.search') }}">بحث</a> --}}
@@ -21,7 +21,7 @@
                   
               </div>
               <!-- Example single danger button -->
-              <div class="btn-group btn-group-change">
+              <div class="btn-group btn-group-change" style="width: 100%;text-align: left;">
                   <div class="left-nav" style="width: 100%;">
  
                       @if (Auth::guard('client')->check())
