@@ -66,7 +66,9 @@
                                 </div>
                             </div>
                             <button type="submit" name="btn-register" class="theme-btn primary-btn btn-sign w-100">تسجيل</button>
-
+                            <a class="btn btn-blue-outline login-div" style="margin-top:10px;">
+                                <span  class="fa fa-facebook"  style="color:#F2AF2F; font-size:20px;"></span>&nbsp; تسجيل الدخول عن طريق الفيسبوك
+                                </a>
                             <div class="sec">
                                 <p>
                                     هل بالفعل لديك حساب

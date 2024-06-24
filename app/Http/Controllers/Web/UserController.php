@@ -81,28 +81,29 @@ class UserController extends Controller
     } else {
       $newObj = new User;
       $newObj->name = $formdata['name'];
-      $newObj->first_name = $formdata['first_name'];
-      $newObj->last_name = $formdata['last_name'];
+      // $newObj->first_name = $formdata['first_name'];
+      // $newObj->last_name = $formdata['last_name'];
       $newObj->email = $formdata['email'];
       $newObj->password = bcrypt($formdata['password']);
-      $newObj->mobile = $formdata['mobile'];
+      // $newObj->mobile = $formdata['mobile'];
       $newObj->role = 'admin';
       //   $newObj->is_active = $formdata['is_active'];
       $newObj->createuser_id = Auth::user()->id;
       $newObj->updateuser_id = Auth::user()->id;
-      $newObj->is_active = isset ($formdata["is_active"]) ? 1 : 0;
+      // $newObj->is_active = isset ($formdata["is_active"]) ? 1 : 0;
+      $newObj->is_active =1;
       $newObj->save();
 
-      if ($request->hasFile('image')) {
+      // if ($request->hasFile('image')) {
 
-        $file = $request->file('image');
-        // $filename= $file->getClientOriginalName();
+      //   $file = $request->file('image');
+      //   // $filename= $file->getClientOriginalName();
 
-        $this->storeImage($file, $newObj->id);
-        //  $this->storeImage( $file,2);
-      }
-
-      return response()->json("ok");
+      //   $this->storeImage($file, $newObj->id);
+      //   //  $this->storeImage( $file,2);
+      // }
+      return redirect()->route('user.index')->with('success', 'تم إضافة المدير بنجاح');
+      //return response()->json("ok");
     }
   }
 
@@ -265,23 +266,27 @@ class UserController extends Controller
    */
   public function destroy($id)
   {
-    //delete foriegn key
-    User::where('createuser_id', $id)->update([
-      'createuser_id' => null,
+    $count = User::count();
+    if($count>1){
+//delete foriegn key
+User::where('createuser_id', $id)->update([
+  'createuser_id' => null,
 
-    ]);
-    User::where('updateuser_id', $id)->update([
-      'updateuser_id' => null,
-    ]);
-    //delete user
-    $user = User::find($id);
-    $oldimagename = $user->image;
-    $strgCtrlr = new StorageController();
-    $path = $strgCtrlr->path['users'];
-    Storage::delete("public/" .$path. '/' . $oldimagename);
-    if (!($user === null)) {
-      User::find($id)->delete();
-    }
+]);
+User::where('updateuser_id', $id)->update([
+  'updateuser_id' => null,
+]);
+//delete user
+$user = User::find($id);
+$oldimagename = $user->image;
+$strgCtrlr = new StorageController();
+$path = $strgCtrlr->path['users'];
+Storage::delete("public/" .$path. '/' . $oldimagename);
+if (!($user === null)) {
+  User::find($id)->delete();
+}
+
+    } 
     return redirect()->route('user.index');
 
   }

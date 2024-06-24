@@ -49,6 +49,9 @@
                                 ليس لديك حساب؟
                                 <a href="{{ url('/u/register') }}">سجل الأن</a>
                             </p>
+                            <a class="btn btn-blue-outline login-div">
+                                <span   class="fa fa-facebook"  style="color:#F2AF2F; font-size:20px;"></span>&nbsp; الدخول عن طريق الفيسبوك
+                                </a>
                         </div>
                     </div>
 
