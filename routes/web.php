@@ -261,7 +261,7 @@ Route::prefix('u')->group(function () {
       //  Route::get('/{slug}', [ClientController::class, 'send_message']);
          Route::get('/messages', [MessageController::class, 'index'])->name('mymessages');
          Route::post('/messages', [ClientController::class, 'logout'])->name('logout.client');
-
+         Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('message.delete');;
          Route::get('/account', [ClientController::class, 'edit'])->name('client.account');
          Route::post('/update', [ClientController::class, 'update'])->name('client.update');
          

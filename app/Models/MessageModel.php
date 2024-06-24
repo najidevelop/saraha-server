@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use App\Http\Controllers\Web\StorageController;
 class MessageModel extends Model
 {
     use HasFactory;
@@ -22,6 +22,21 @@ class MessageModel extends Model
         'file_type',
 
     ];
+    protected $appends= ['file_path'];
+    public function getFilePathAttribute(){
+        $conv="";
+        $strgCtrlr = new StorageController(); 
+        if(is_null($this->file_type) ){
+             
+        }else if($this->file_type==''){
+            
+        } else {
+            $url = $strgCtrlr->MessagePath($this->file_type);
+            $conv =  $url.$this->file;
+         
+        }         
+            return  $conv;
+     }
 
     public function sender(): BelongsTo
     {

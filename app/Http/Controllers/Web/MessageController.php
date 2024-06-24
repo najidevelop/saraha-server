@@ -33,7 +33,7 @@ class MessageController extends Controller
     {
         if (Auth::guard('client')->check()) {
             $id = Auth::guard('client')->user()->id;
-            $List = MessageModel::where('recipient_id', $id)->get();
+            $List = MessageModel::where('recipient_id', $id)->orderByDesc("created_at")->get();
             $client_url = $this->getclient_url(Auth::guard('client')->user()->user_name);
             return view('site.client.mymessage', ['messages' => $List, "client_url" => $client_url]);
         } else {
@@ -192,9 +192,41 @@ return response()->json("ok");
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+        if(Auth::guard('client')->check()){          
+            $item = MessageModel::find($id);
+          if (!( $item  === null)) {
+            //delete image
+            $oldimagename =$item->file;
+            $strgCtrlr = new StorageController();
+
+            $path ="";
+                 //get type
+                 if ($item->file_type=='image') {
+               
+                    $path = $strgCtrlr->path['messages'];
+                } else if ($item->file_type=='sound') {
+                  
+                    $path = $strgCtrlr->soundpath['messages'];
+                } else if($item->file_type=='video'){
+                   
+                    $path = $strgCtrlr->vidpath['messages'];
+                }
+if( $path !=""){
+    Storage::delete("public/" .$path. '/' . $oldimagename);   
+}
+                  
+            MessageModel::find($id)->delete();
+          
+          }else{
+            
+          }
+        }else{
+           
+          }
+          return redirect()->route('mymessages');
+
     }
     public function storeImage($file, $id)
     {
@@ -205,17 +237,18 @@ return response()->json("ok");
         if ($file !== null) {
             $ext = $file->getClientOriginalExtension();
             $type = '';
+            $path ='';
             //get type
             if (in_array(Str::lower($ext), ['png', 'gif', 'jpeg', 'jpg', 'svg', 'webp'])) {
                 $type = 'image';
+                $path = $strgCtrlr->path['messages'];
             } else if (in_array(Str::lower($ext), ['mp3'])) {
                 $type = 'sound';
+                $path = $strgCtrlr->soundpath['messages'];
             } else {
                 $type = 'video';
-            }
-
-
-            $path = $strgCtrlr->path['messages'];
+                $path = $strgCtrlr->vidpath['messages'];
+            }             
             if ($type == 'image') {
                 if (Str::lower($ext) == 'svg') {
                     $filename = rand(10000, 99999) . $id . '.' . $ext;
@@ -245,8 +278,6 @@ return response()->json("ok");
                 }
 
             } else if ($type == 'sound') {
-
-
                 $filename = rand(10000, 99999) . $id . '.' . $ext;
                 Storage::delete("public/" . $path . '/' . $oldimagename);
                 $path = $file->storeAs($path, $filename, 'public');
@@ -256,9 +287,6 @@ return response()->json("ok");
                 ]);
 
             } else {
-
-
-
                 $filename = rand(10000, 99999) . $id . '.' . $ext;
                 Storage::delete("public/" . $path . '/' . $oldimagename);
                 $path = $file->storeAs($path, $filename, 'public');
@@ -269,8 +297,6 @@ return response()->json("ok");
 
             }
         }
-
-
         return 1;
     }
 

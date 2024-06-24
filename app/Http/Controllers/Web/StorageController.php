@@ -237,7 +237,7 @@ public function MessagePath($type)
     if ($type == "image") {    
        $url =  $this->getlocalpath($this->path['messages']);      
     }else if($type == "sound"){
-      $url =  $this->getlocalpath($this->pdfpath['messages']);   
+      $url =  $this->getlocalpath($this->soundpath['messages']);   
     } else {
       //video 
        $url =  $this->getlocalpath($this->vidpath['messages']);
