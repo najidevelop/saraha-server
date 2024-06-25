@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   @php
-  
- 
-  //    $sitedataCtrlr=new App\Http\Controllers\Web\SiteDataController();  
-  //   $mainarr=$sitedataCtrlr->FillStaticData();
+      $sitedataCtrlr=new App\Http\Controllers\Web\SiteDataController();  
+     $mainarr=$sitedataCtrlr->FillStaticData();
      
   // if(isset($lang)){
   //   $transarr=$sitedataCtrlr->FillTransData( $lang);

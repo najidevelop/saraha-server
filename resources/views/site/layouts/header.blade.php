@@ -1,7 +1,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-          <a href="{{ url('/') }}"><img src="{{ url('assets/site/uploads/logo.png') }}" alt=""></a>
+          <a href="{{ url('/') }}"><img src="{{ $mainarr['logo']}}" width="50px" height="50px" alt=""></a>
           {{-- <h2><a class="navbar-brand" href="{{ url('/') }}"><span style="color:#F2AF2F;">جمرايا </span>دليل
                   الجامعات</a></h2> --}}
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

@@ -44,43 +44,44 @@ class SiteDataController extends Controller
             'location',
             'is_active',
         )->where('category', 'site-info')
-            ->orWhere('category', 'header-info')
+            //->orWhere('category', 'header-info')
             ->get();
         $titlerow = $List->where('category', 'site-info')->where('dep', 'title')->first();
         $title = $titlerow->value1;
-        $desc = $titlerow->value2;
-        $meta = $titlerow->value3;
+        // $desc = $titlerow->value2;
+        // $meta = $titlerow->value3;
         $logorow = $List->where('category', 'site-info')->where('dep', 'logo')->first();
-        $favicon = $strgCtrlr->getPath($logorow->value1, $path);
+        $iconrow = $List->where('category', 'site-info')->where('dep', 'icon')->first();
+        $favicon = $strgCtrlr->getPath($iconrow->value1, $path);
         $favicon = ($favicon == '' ? $strgCtrlr->DefaultPath('image') : $favicon);
-        $logo = $strgCtrlr->getPath($logorow->value2, $path);
+        $logo = $strgCtrlr->getPath($logorow->value1, $path);
         $logo = ($logo == '' ? $strgCtrlr->DefaultPath('image') : $logo);
-        $whatsrow = $List->where('category', 'site-info')->where('dep', 'whatsapp')->first();
-        $whatsApp = $whatsrow->value1;
-        $whatsApp = \Str::replace('+','',$whatsApp);
-        $whatsApp=\Str::replace(' ','',$whatsApp);
+        // $whatsrow = $List->where('category', 'site-info')->where('dep', 'whatsapp')->first();
+        // $whatsApp = $whatsrow->value1;
+        // $whatsApp = \Str::replace('+','',$whatsApp);
+        // $whatsApp=\Str::replace(' ','',$whatsApp);
         //header  info
-        $phonerow = $List->where('category', 'header-info')->where('dep', 'phone')->first();
+        // $phonerow = $List->where('category', 'header-info')->where('dep', 'phone')->first();
 
-        $emailrow = $List->where('category', 'header-info')->where('dep', 'email')->first();
+        // $emailrow = $List->where('category', 'header-info')->where('dep', 'email')->first();
 
-        $h_social_list = $this->getSocialbyLocation('header-social');
-        $f_social_list = $this->getSocialbyLocation('footer-social');
+        // $h_social_list = $this->getSocialbyLocation('header-social');
+        // $f_social_list = $this->getSocialbyLocation('footer-social');
 
 
         $mainarr = [
             "title" => $title,
-            "desc" => $desc,
-            "meta" => $meta,
+            // "desc" => $desc,
+            // "meta" => $meta,
             "favicon" => $favicon,
             "logo" => $logo,
 
-            "phonerow" => $phonerow,
-            "emailrow" => $emailrow,
+            // "phonerow" => $phonerow,
+            // "emailrow" => $emailrow,
 
-            "h_social_list" => $h_social_list,
-            "f_social_list" => $f_social_list,
-            "whatsapp" => $whatsApp,
+            // "h_social_list" => $h_social_list,
+            // "f_social_list" => $f_social_list,
+            // "whatsapp" => $whatsApp,
            
         ];
 

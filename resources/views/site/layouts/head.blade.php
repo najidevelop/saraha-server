@@ -17,13 +17,12 @@
   <meta property="og:url" content="">
   
   
-      @isset($Settings)
-          <link rel="icon" type="image/x-icon" href="{{ url('assets/site/uploading/' . $Settings->favicon) }}">
-      @endisset
  
+     <!-- Favicons -->
+     <link href="{{ $mainarr['favicon']}}" rel="icon">
   
   <title>
-          @yield('title')
+    {{$mainarr['title']}} @yield('title')
   </title>
   
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">

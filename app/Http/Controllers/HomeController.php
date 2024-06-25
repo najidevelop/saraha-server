@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
       //   $formdata=$request->all();
      
-      //   $sitedctrlr=new SiteDataController();
+    // $sitedctrlr=new SiteDataController();
       // $slidedata=  $sitedctrlr->getSlideData('home');
       // $transarr=$sitedctrlr->FillTransData($lang);
     //  $transarr['langs']->select('code')->get();

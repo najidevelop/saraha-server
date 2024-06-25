@@ -18,9 +18,9 @@ class UpdateTitleRequest extends FormRequest
     {
   
        return[
-       'title'=>'nullable|string',   
-       'desc'=>'nullable|string',   
-       'meta'=>'nullable|string',   
+       'name'=>'nullable|string',   
+    //    'desc'=>'nullable|string',   
+    //    'meta'=>'nullable|string',   
         
        
        
@@ -39,9 +39,9 @@ public function messages(): array
 //    $minMobileLength=10;
 //    $maxMobileLength=15;
    return[
-     'title.string'=>__('messages.this field is required',[],'en') ,
-     'desc.string'=>__('messages.this field is required',[],'en') ,
-     'meta.string'=>__('messages.this field is required',[],'en') ,
+     'name.string'=>__('messages.this field is required',[],'ar') ,
+    //  'desc.string'=>__('messages.this field is required',[],'en') ,
+    //  'meta.string'=>__('messages.this field is required',[],'en') ,
     ];
     
 }

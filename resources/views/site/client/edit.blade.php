@@ -231,53 +231,33 @@
         </div>
     </div>
     @endforeach
- @endif
-                        
-
-                        <div class="row form-group" style="margin-bottom: 10px;">
+ @endif   
+ <div class="row form-group" style="margin-bottom: 10px;">
                            
                             <label for="" class="col-md-3 control-label"></label>
                             <div class="col-md-9">
                                 <button type="submit" name="btn-social" id="btn-social"  class="theme-btn primary-btn btn-sign w-100">حفظ</button>
-
-                         
                     </div>
                     </div>
-                      
-                            
-                        </div>
-                    </form>
-
-                       
-                    
-                    </div>
-                
-                                     
-               
                 </div>
-                
-                <!-- End Section atLeft -->
+                    </form>
+                </div>
+            </div>
+            <!-- End Section atLeft -->
             </div>
         </div>
-         
     </section>
 </div></div>
 </section>
 @endsection
 @section('css')
- 
- 
 <link rel="stylesheet" href="{{ url('assets/site/assets/css/custom.css') }}" />
-
 @endsection
-@section('js')
- 
+@section('js') 
 <script src="{{URL::asset('assets/site/assets/js/country.js')}}"></script>
 <script src="{{URL::asset('assets/site/assets/js/account.js')}}"></script>
-<script  >  
- 
+<script  >   
 var countryurl = "{{URL::asset('assets/site/assets/js/countries.json')}}";
 var selcntry="{{ $client->country }}";
 </script>
-
 @endsection

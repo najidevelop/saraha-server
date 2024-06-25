@@ -15,9 +15,10 @@ use App\Http\Controllers\Web\LangPostController;
 use  App\Http\Controllers\Web\MediaPostController;
 use  App\Http\Controllers\Web\MailController;
 use  App\Http\Controllers\Web\ClientController;
-use  App\Http\Controllers\Web\ClientAuthController;
+//use  App\Http\Controllers\Web\ClientAuthController;
 use  App\Http\Controllers\Web\MessageController;
 use  App\Http\Controllers\Web\SocialController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 //site
 use App\Http\Controllers\HomeController;
@@ -119,7 +120,7 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
         });
 
         Route::prefix('setting')->group(function () {
-            Route::get('/siteinfo', [SettingController::class, 'getbasic']);
+           
             Route::post('/updatetitle', [SettingController::class, 'updatetitle']);
             Route::post('/updatefav', [SettingController::class, 'updatefav']);
             Route::post('/updatelogo', [SettingController::class, 'updatelogo']);
@@ -134,10 +135,30 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
           //  Route::post('/updatesocial/{id}', [SettingController::class, 'updatesocial']);
             Route::delete('/delsocial/{id}', [SettingController::class, 'delsocial']);
             //header contact
-            Route::get('/headinfo', [SettingController::class, 'getheadinfo']);
+  
             Route::post('/updatephone', [SettingController::class, 'updatephone']);
             Route::post('/updateemail', [SettingController::class, 'updateemail']);
             Route::get('/translate', [PostController::class, 'translate']);
+///////////////////////// saraha
+            Route::get('/general', [SettingController::class, 'index']);
+                  //////////////siteinfo
+            Route::get('/siteinfo', [SettingController::class, 'getbasic']);
+          //  Route::get('/editinfo', [SettingController::class, 'editinfo']);
+            Route::post('/updateinfo/{id}', [SettingController::class, 'updateinfo']);
+            //////////////header
+            Route::get('/head', [SettingController::class, 'getheadinfo']);
+            Route::get('/createhead', [SettingController::class, 'createhead']);
+            Route::post('/storehead', [SettingController::class, 'storehead']);
+            Route::get('/edithead/{id}', [SettingController::class, 'edithead']);
+           Route::post('/updatehead/{id}', [SettingController::class, 'updatehead']);
+            Route::delete('/delhead/{id}', [SettingController::class, 'delhead']);
+      //////////////footer
+            Route::get('/footer', [SettingController::class, 'footerinfo']);
+            Route::get('/createfooter', [SettingController::class, 'createfooter']);
+            Route::post('/storefooter', [SettingController::class, 'storefooter']);
+            Route::get('/editfooter/{id}', [SettingController::class, 'editfooter']);
+         Route::post('/updatefooter/{id}', [SettingController::class, 'updatefooter']);
+            Route::delete('/delfooter/{id}', [SettingController::class, 'delfooter']);
 
         });
 
@@ -248,6 +269,11 @@ Route::prefix('u')->group(function () {
     
         Route::get('/login', [ClientController::class, 'showlogin'])->name('login.client');
         Route::post('/login', [ClientController::class, 'login']);
+        Route::get('auth/redirect', [SocialiteController::class, 'loginSocial'])
+        ->name('socialite.auth');
+ 
+    Route::get('auth/callback', [SocialiteController::class, 'callbackSocial'])
+        ->name('socialite.callback');
        // 
 
     });
