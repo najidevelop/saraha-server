@@ -57,7 +57,7 @@
                                 <td style="width: 50px">
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <a href="{{url('admin/setting/siteinfo')}}"><i
+                                            <a href="{{url('admin/setting/head')}}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         </div>
                                         
@@ -72,7 +72,7 @@
                                 <td style="width: 50px">
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <a href="{{url('admin/setting/siteinfo')}}"><i
+                                            <a href="{{url('admin/setting/footer')}}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         </div>
                                         

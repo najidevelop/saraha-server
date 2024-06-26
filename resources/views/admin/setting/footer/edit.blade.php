@@ -10,8 +10,6 @@
             </div>
         @endif
     </div>
-
-
     @if (count($errors) > 0)
         <ul>
             @foreach ($errors->all() as $item)
@@ -31,13 +29,13 @@
             </ol>
         </nav>
         <div class="form-group btn-create  justify-content-end" style="display: flex">
-            <a href="{{ url('admin/setting/createhead') }}" class="btn btn-primary">جديد</a>
+            <a href="{{ url('admin/setting/createfooter') }}" class="btn btn-primary">جديد</a>
         </div>
         @php 
 $i=0;
         @endphp
         @foreach ($List as $row)
-        <form action="{{ url('admin/setting/updatehead', [$row->id]) }}" id="head-form-{{++$i}}" method="POST"
+        <form action="{{ url('admin/setting/updatefooter', [$row->id]) }}" id="footer-form-{{++$i}}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-3">

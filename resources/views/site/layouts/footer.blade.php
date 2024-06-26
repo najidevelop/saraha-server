@@ -54,19 +54,7 @@ integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ
 @endif
 @yield('script')
 @yield('js')
-</body>
-
- 
-<script>
-var btn = document.getElementById('profile');
-if(btn){
-btn.addEventListener("click" , function(){
-btn.style.height = "100px";    
-});
-}
-
-
-</script>
- 
-
- 
+@foreach ( $mainarr['footerlist'] as $headrow )
+{{ Str::of($headrow['value1'])->toHtmlString()}}    
+@endforeach
+</body> 

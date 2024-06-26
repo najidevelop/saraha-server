@@ -149,14 +149,14 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
             Route::get('/head', [SettingController::class, 'getheadinfo']);
             Route::get('/createhead', [SettingController::class, 'createhead']);
             Route::post('/storehead', [SettingController::class, 'storehead']);
-            Route::get('/edithead/{id}', [SettingController::class, 'edithead']);
+       
            Route::post('/updatehead/{id}', [SettingController::class, 'updatehead']);
-            Route::delete('/delhead/{id}', [SettingController::class, 'delhead']);
+            Route::delete('/delhead/{id}', [SettingController::class, 'destroy']);
       //////////////footer
             Route::get('/footer', [SettingController::class, 'footerinfo']);
             Route::get('/createfooter', [SettingController::class, 'createfooter']);
             Route::post('/storefooter', [SettingController::class, 'storefooter']);
-            Route::get('/editfooter/{id}', [SettingController::class, 'editfooter']);
+         
          Route::post('/updatefooter/{id}', [SettingController::class, 'updatefooter']);
             Route::delete('/delfooter/{id}', [SettingController::class, 'delfooter']);
 

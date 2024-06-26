@@ -46,6 +46,7 @@ class SiteDataController extends Controller
         )->where('category', 'site-info')
             //->orWhere('category', 'header-info')
             ->get();
+
         $titlerow = $List->where('category', 'site-info')->where('dep', 'title')->first();
         $title = $titlerow->value1;
         // $desc = $titlerow->value2;
@@ -67,8 +68,33 @@ class SiteDataController extends Controller
 
         // $h_social_list = $this->getSocialbyLocation('header-social');
         // $f_social_list = $this->getSocialbyLocation('footer-social');
-
-
+//head && footer
+$List2 = Setting::select(
+    'id',
+    'name1',
+    'value1',
+    'name2',
+    'value2',
+    'name3',
+    'value3',
+    'category',
+    'dep',
+    'sequence',
+    'section',
+    'location',
+    'is_active',
+)
+->where(function ($query) {
+    $query->where('category', 'header-info')
+        ->where('dep', 'header');
+})
+->orWhere(function ($query) {
+    $query->where('category', 'footer-info')
+        ->where('dep', 'footer');
+})
+     ->get();
+$headerlist=$List2->where('category', 'header-info')->select('id','name1','value1');
+$footerlist=$List2->where('category', 'footer-info')->select('id','name1','value1');
         $mainarr = [
             "title" => $title,
             // "desc" => $desc,
@@ -82,7 +108,8 @@ class SiteDataController extends Controller
             // "h_social_list" => $h_social_list,
             // "f_social_list" => $f_social_list,
             // "whatsapp" => $whatsApp,
-           
+           'headerlist'=> $headerlist,           
+           'footerlist'=> $footerlist,
         ];
 
         //View::share('sitetitle', $title);
