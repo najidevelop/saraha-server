@@ -75,11 +75,8 @@
                         <span class="nav-link-text me-1">الأخبار</span>
                     </a>
                 </li>
-             
-                
-        
                 <li class="nav-item" id="nb">
-                    <a class="nav-link " href="{{route('admin')}}">
+                    <a class="nav-link " href="{{url('admin/page')}}">
                         <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons-round opacity-10">table_view</i>
                         </div>

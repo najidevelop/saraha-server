@@ -155,8 +155,7 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
       //////////////footer
             Route::get('/footer', [SettingController::class, 'footerinfo']);
             Route::get('/createfooter', [SettingController::class, 'createfooter']);
-            Route::post('/storefooter', [SettingController::class, 'storefooter']);
-         
+            Route::post('/storefooter', [SettingController::class, 'storefooter']);         
          Route::post('/updatefooter/{id}', [SettingController::class, 'updatefooter']);
             Route::delete('/delfooter/{id}', [SettingController::class, 'delfooter']);
 
@@ -211,8 +210,19 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
 Route::prefix('category')->group(function () {
   //  Route::post('/update/{id}', [CategoryController::class, 'update'])->name('post.update');
     Route::post('/updatemenu/{id}', [CategoryController::class, 'updatemenu'])->name('category.updatemenu');
- 
+
+  
     
+}); 
+Route::prefix('page')->group(function () {
+    Route::get('/', [CategoryController::class, 'index']);
+      //////////////header
+      Route::get('/create', [CategoryController::class, 'create']);
+      Route::post('/store', [CategoryController::class, 'store']);
+      Route::get('/edit/{id}', [CategoryController::class, 'edit']);
+ 
+     Route::post('/update/{id}', [CategoryController::class, 'update']);
+      Route::delete('/delete/{id}', [CategoryController::class, 'destroy']);
 }); 
 
 Route::prefix('mediapost')->group(function () {
