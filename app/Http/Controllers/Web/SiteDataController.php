@@ -845,6 +845,19 @@ $is_link=1;
        
         return  $catalog;
     }
+
+
+    //saraha
+    public function getheaderpage()
+    {
+       $catmodel= Category::where('slug','contact')->select('id','code')->first();
+       return view("admin.page.add");
+    }
+    public function getfooterpage($slug)
+    {
+       $catmodel= Category::where('slug',$slug)->first();
+       return view("admin.page.add");
+    }
     /**
      * Show the form for creating a new resource.
      */

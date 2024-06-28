@@ -8,6 +8,7 @@
       لوحة التحكم
 
   </title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"-->
   <!--    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">-->
   <!--</script>-->
@@ -35,6 +36,7 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ url('assets/admin/css/material-dashboard.css?v=3.0.2') }}" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url('assets/site/css/asw.css') }}">
+  @yield('css')
   {{-- <link rel="stylesheet" href="{{ url('../public/css') }}/dalil_style.css"> --}}
 </head>
  

@@ -223,6 +223,13 @@ Route::prefix('page')->group(function () {
  
      Route::post('/update/{id}', [CategoryController::class, 'update']);
       Route::delete('/delete/{id}', [CategoryController::class, 'destroy']);
+      //sort
+      Route::get('/sort', [LocationController::class, 'showtable']);
+      Route::get('/sort/{loc}', [LocationController::class, 'sortpage']);
+      Route::get('/fillcombo/{loc}', [LocationController::class, 'getpagesforcombo']);
+      Route::get('/fillsort/{loc}', [LocationController::class, 'fillsortpages']);
+      Route::post('/updatesort/{loc}', [LocationController::class, 'updatepagesort']);
+      
 }); 
 
 Route::prefix('mediapost')->group(function () {
@@ -307,6 +314,6 @@ Route::prefix('u')->group(function () {
        
     });
 });
-
+Route::get('/p', [CategoryController::class, 'send_message']);
 Route::post('/sendmail', [MailController::class, 'store']);
 require __DIR__ . '/auth.php';

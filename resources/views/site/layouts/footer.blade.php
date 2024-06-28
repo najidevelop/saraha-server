@@ -6,10 +6,13 @@
 <footer>
 <div class="container ff">
   <ul class="ul">
+    
     <a href="https://www.gmraya.com/page/about-us">
       <li>شروط الإستخدام والخصوصية</li>
   </a>
-     
+  <a href="https://www.gmraya.com/page/about-us">
+    <li> اتصل بنا</li>
+</a>
       <a href="https://www.gmraya.com/page/about-us">
         <li>إنضم للمجموعة</li>
     </a>
@@ -18,9 +21,7 @@
       <li>  تابعنا على Facebook</li>
   </a>
      
-  <a href="https://www.gmraya.com/page/about-us">
-    <li> اتصل بنا</li>
-</a>
+
  
  
 

@@ -82,6 +82,16 @@
                         </div>
                         <span class="nav-link-text me-1">الصفحات الثابتة</span>
                     </a>
+                   
+                </li>
+                <li class="nav-item" id="nb">
+                    <a class="nav-link " href="{{url('admin/page/sort')}}">
+                        <div class="text-white text-center ms-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons-round opacity-10">table_view</i>
+                        </div>
+                        <span class="nav-link-text me-1">ترتيب القوائم  </span>
+                    </a>
+                   
                 </li>
                  
             </ul>

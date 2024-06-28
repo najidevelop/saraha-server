@@ -86,12 +86,7 @@ $more=$more_post['tr_title'];
 }else if($catmodel->code=='products'){
    
    $cat= $sitedctrlr->getcatwithposts( $langitem->id,$slug);
-   $translateArr=   $sitedctrlr->gettranscat( $langitem->id);
-  
-  
-   
-
-   return view('site.content.products',['category'=>$cat,'lang'=>$lang ,'current_path'=>$current_path,'active_item'=>$cat['code']]);  
+   $translateArr=   $sitedctrlr->gettranscat( $langitem->id); return view('site.content.products',['category'=>$cat,'lang'=>$lang ,'current_path'=>$current_path,'active_item'=>$cat['code']]);  
 }
 else if($catmodel->code=='contacts'){
  
@@ -113,6 +108,16 @@ else{
 }
      
       
+    }
+    public function showpage(string $slug)
+    {
+       $catmodel= Category::where('slug',$slug)->where('code','page')->first();
+       if($catmodel){
+         return view("site.page.show",['page'=>$catmodel]);
+       }else{
+         abort(404, '');
+       }
+ 
     }
     public function getpostcontent( $lang,$slug,$postslug)
     {
