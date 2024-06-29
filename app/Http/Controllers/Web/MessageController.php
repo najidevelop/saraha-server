@@ -250,7 +250,7 @@ if( $path !=""){
                 $path = $strgCtrlr->vidpath['messages'];
             }             
             if ($type == 'image') {
-                if (Str::lower($ext) == 'svg') {
+               // if (Str::lower($ext) == 'svg') {
                     $filename = rand(10000, 99999) . $id . '.' . $ext;
                     Storage::delete("public/" . $path . '/' . $oldimagename);
                     $path = $file->storeAs($path, $filename, 'public');
@@ -259,23 +259,23 @@ if( $path !=""){
                         "file_type" => 'image',
                     ]);
 
-                } else {
-                    $filename = rand(10000, 99999) . $id . ".webp";
-                    $manager = new ImageManager(new Driver());
-                    $image = $manager->read($file);
-                    $image = $image->toWebp(75);
-                    if (!File::isDirectory(Storage::url('/' . $path))) {
-                        Storage::makeDirectory('public/' . $path);
-                    }
-                    $image->save(storage_path('app/public') . '/' . $path . '/' . $filename);
+                // } else {
+                //     $filename = rand(10000, 99999) . $id . ".webp";
+                //     $manager = new ImageManager(new Driver());
+                //     $image = $manager->read($file);
+                //     $image = $image->toWebp(75);
+                //     if (!File::isDirectory(Storage::url('/' . $path))) {
+                //         Storage::makeDirectory('public/' . $path);
+                //     }
+                //     $image->save(storage_path('app/public') . '/' . $path . '/' . $filename);
 
-                    MessageModel::find($id)->update([
-                        "file" => $filename,
-                        "file_type" => 'image',
-                    ]);
-                    Storage::delete("public/" . $path . '/' . $oldimagename);
+                //     MessageModel::find($id)->update([
+                //         "file" => $filename,
+                //         "file_type" => 'image',
+                //     ]);
+                //     Storage::delete("public/" . $path . '/' . $oldimagename);
 
-                }
+                // }
 
             } else if ($type == 'sound') {
                 $filename = rand(10000, 99999) . $id . '.' . $ext;
