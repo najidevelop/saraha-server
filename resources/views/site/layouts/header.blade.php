@@ -11,6 +11,9 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="width:100% ">
               <div class="navbar-nav" style="width:auto;">
                   <a class="nav-link active" aria-current="page" href="{{ url('/') }}">الرئيسية</a>
+                  @foreach ($mainmenuarr as $menuitem)
+                  <a class="nav-link active" aria-current="page"  style="width:auto;text-wrap: nowrap;" href="{{ $menuitem['urlpath'] }}" >{{Str::of( $menuitem['tr_title'])->toHtmlString()}}</a>
+                  @endforeach
                   {{-- <a class="nav-link menu-search" aria-current="page" href="{{ route('page.search') }}">بحث</a> --}}
                   {{-- <a class="nav-link active" aria-current="page" href="{{ url('/') }}">التأسيس</a> --}}
                   {{-- @isset($pineed)<a class="nav-link" href="{{route('viewpinned', $pineed->href)}}">عن الموقع</a>@endisset --}}
@@ -31,9 +34,7 @@
                     <a href="{{ route('mymessages') }}" class="link-two text-decoration-none link-mid">
                         <span>رسائلي</span>
                     </a>
-                    <a href="/" class="link-two text-decoration-none link-mid">
-                        <span>اتصل بنا</span>
-                    </a>
+                 
                     
                     <form method="POST" action="{{ route('logout.client') }}" class="btn btn-default btn-flat float-right">
                         @csrf
@@ -62,9 +63,7 @@
                           <a href="/registerr" class="link-one text-decoration-none link-mid">
                             <span>تسجيل الدخول عن طريق الفيسبوك</span>
                         </a>
-                        <a href="/" class="link-two text-decoration-none link-mid">
-                            <span> اتصل بنا</span>
-                        </a>
+                        
                       @endif
                   
                   </div>

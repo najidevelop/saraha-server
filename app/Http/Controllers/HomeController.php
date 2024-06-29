@@ -111,7 +111,7 @@ else{
     }
     public function showpage(string $slug)
     {
-       $catmodel= Category::where('slug',$slug)->where('code','page')->first();
+       $catmodel= Category::where('slug',$slug)->where('code','page')->where('status',1)->first();
        if($catmodel){
          return view("site.page.show",['page'=>$catmodel]);
        }else{

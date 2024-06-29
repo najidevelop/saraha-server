@@ -1,18 +1,17 @@
 <div class="visit_and_sites text-center d-flex flex-wrap justify-content-center" style="color:#272727;margin-bottom: -2rem;">
-  <p>عدد الزيارات : </p>
-  <span class="me-1 mx-1"> | </span>
-  <p>عدد الزوار:  </p> 
+ 
 </div>
 <footer>
 <div class="container ff">
   <ul class="ul">
-    
-    <a href="https://www.gmraya.com/page/about-us">
-      <li>شروط الإستخدام والخصوصية</li>
+    @foreach ($footermenuarr as $footeritem)
+    <a href="{{ $footeritem['urlpath'] }}">
+      <li>{{Str::of( $footeritem['tr_title'])->toHtmlString()}}</li>
   </a>
-  <a href="https://www.gmraya.com/page/about-us">
-    <li> اتصل بنا</li>
-</a>
+    
+    @endforeach
+   
+ 
       <a href="https://www.gmraya.com/page/about-us">
         <li>إنضم للمجموعة</li>
     </a>

@@ -314,6 +314,6 @@ Route::prefix('u')->group(function () {
        
     });
 });
-Route::get('/p', [CategoryController::class, 'send_message']);
+Route::get('/page/{slug}', [HomeController::class, 'showpage']);
 Route::post('/sendmail', [MailController::class, 'store']);
 require __DIR__ . '/auth.php';

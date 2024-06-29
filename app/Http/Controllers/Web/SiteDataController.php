@@ -858,6 +858,78 @@ $is_link=1;
        $catmodel= Category::where('slug',$slug)->first();
        return view("admin.page.add");
     }
+    public function getmenubyloc($loc)
+    {
+        $Dblist= LocationSetting::wherehas('location', function ($query) use($loc) {
+            $query->where('name',$loc);
+          })->where(function ($query) {
+            $query->wherehas('category', function ($query)  {
+            $query->where('status',1);
+          })
+                ->orWhereHas('post', function ($query)  {
+            $query->where('status',1);
+           });
+        })
+        //   ->
+        //   wherehas('post', function ($query)  {
+        //     $query->where('status',1);
+        //   })
+        
+        //   ->
+        //   wherehas('category', function ($query)  {
+        //     $query->where('status',1);
+        //   })
+          ->with(['location',
+            'post' => function ($q)   {
+               $q->where('status',1) ;
+           }
+           ,
+            'category' => function ($q)   {
+               $q->where('status',1) ;
+           }])->  orderBy('sequence')->get();   
+
+    
+        $List = $Dblist->map(function ($locPost) {
+//if($locPost->post && $locPost->post->langposts->first()){
+    $tr_title='';
+    $tr_content ='';
+    $slug ='';
+    $sons=[];
+    $code='';
+    if($locPost->category_id>0){
+        $tr_title=$locPost->category->title;
+        $slug=$locPost->category->slug;
+        $code=$locPost->category->code;
+        $urlpath=url('page', $slug);
+      //  $tr_content =$locPost->category->langposts->first()->content_trans;
+//    $sons=  $this->mapcategorylist($locPost->category->sons->where('status',1),$lang_id);
+    }else if($locPost->post_id>0 ){
+        $tr_title=$locPost->post->title;
+        $slug=$locPost->post->slug;
+        $code=$locPost->post->code;
+    //    $tr_content =$locPost->post->langposts->first()->content_trans;
+    } 
+ 
+    return [
+        'id' => $locPost->id,
+        'category_id' => $locPost->category_id,
+        'post_id' => $locPost->post_id,
+        'loc_name' => $locPost->location->name,
+        'tr_title' => $tr_title,
+       // 'tr_content' => $locPost->post->langposts->first()->content_trans,                 
+        'sequence' => $locPost->sequence, 
+       // 'sons' =>$sons, 
+        'slug' => $slug,
+        'code'=> $code,
+        'urlpath'=> $urlpath,
+       
+    ];
+ 
+        
+        });
+
+        return $List;
+    }
     /**
      * Show the form for creating a new resource.
      */
