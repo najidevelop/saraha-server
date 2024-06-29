@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="form-group">
-      <button type="button" id="btn_update_sort" class="btn btn-primary">حفظ</button>
+      <button type="button" id="btn_update_sort" class="btn btn-primary" style="margin-top: 10px;">حفظ</button>
   </div>
 </div>
 
