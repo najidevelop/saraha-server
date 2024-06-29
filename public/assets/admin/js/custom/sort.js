@@ -34,13 +34,11 @@ $(document).ready(function () {
 				  data: serializedData,
 				  contentType: 'application/json',
 					success: function(result){
-					//	endLoading();
-					
-				 //  noteSuccess();
-				
+						swal( "تم الحفظ بنجاح");
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						//endLoading();
+						swal( "لم يتم الحفظ ");
 					   noteError();
 					// alert(jqXHR.responseText);
 					  // $('#errormsg').html(jqXHR.responseText);
@@ -73,7 +71,7 @@ function noteError() {
 			$('#errormsg').html('');
 			$('#sortbody').html('');
 			if (data.length == 0) {
-				$('#sortbody').html('No Data');
+				$('#sortbody').html('<div class="dd" id="sortbody"><ol class="dd-list"></ol></div>');
 			} else {
 				fillsortlist(data, $('#sortbody'));
 			}
@@ -95,17 +93,29 @@ function fillsortlist(data, $root) {
 			'Collapse');
 		var $btnexpand = $('<button data-action="expand" type="button" style="display: none;">')
 			.text('Expand');
+
+		//	var $divb = $('<div class="btn-div">');
+			var $btndel = $(
+				'<button onclick="delsort(this);" class="btn-del" style="display: block;">');
+				var itag='<i class="fas fa-times" style="font-size:16px;color:red;"></i>';
+				$btndel.append(itag);
+				//$divb.append($btndel);//temp
+			$li.append($btndel);//temp
+
+
 		if (item.children && item.children.length) {
 			$li.append($btncollapse);
 			$li.append($btnexpand);
 		}
-		var $divhandle = $('<div class="dd-handle">').html(item.name+'<a href=""  class="del-sort"><i class="fas fa-times" style="font-size:16px;color:red;float: left;"></i></a>');
-		$li.append($divhandle);
+		//var $divhandle = $('<div class="dd-handle">').html(item.name+'<a href=""  class="del-sort"><i class="fas fa-times" style="font-size:16px;color:red;float: left;"></i></a>');
+	 var $divhandle = $('<div class="dd-handle">').html(item.name);
+	 $li.append($divhandle);
+		//$li.append($divhandle);
 		if (item.children && item.children.length) {
 			$li.append(fillsortlist(item.children));
 		}
 		$ul.append($li);
-	});
+		 });
 	return $root ? $root.html($ul) : $ul;
 }
 function appendrow(itemid,itemname) {
@@ -121,8 +131,18 @@ function appendrow(itemid,itemname) {
 		// 	$li.append($btncollapse);
 		// 	$li.append($btnexpand);
 		// }
-		var $divhandle = $('<div class="dd-handle">').html(itemname+'<a href=""  class="del-sort"><i class="fas fa-times" style="font-size:16px;color:red;float: left;"></i></a>');
+		//var $divhandle = $('<div class="dd-handle">').html(itemname+'<a  href=""  class="del-sort"><i class="fas fa-times" style="font-size:16px;color:red;float: left;"></i></a>');
+		var $btndel = $(
+			'<button onclick="delsort(this);" class="btn-del" style="display: block;">');
+			var itag='<i class="fas fa-times" style="font-size:16px;color:red;"></i>';
+			$btndel.append(itag);
+			//$divb.append($btndel);//temp
+		$li.append($btndel);//temp
+
+		var $divhandle = $('<div class="dd-handle">').html(itemname);
+	
 		$li.append($divhandle);
+	 
 		// if (item.children && item.children.length) {
 		// 	$li.append(fillsortlist(item.children));
 		// }
@@ -131,20 +151,14 @@ function appendrow(itemid,itemname) {
 	// return $root ? $root.html($ul) : $ul;
 }
 //pages combo
-function loadpages() {
-		 
+function loadpages() {		 
 	//	resetForm();
 		ClearErrors();
-	 var choose='اختر الصفحة';
-	 
+	 var choose='اختر الصفحة';	 
 		 $('#page_id').html('<option title="اختر الصفحة" value="0"  class="text-muted">'+choose+'</option>');
-  
-
- 
-	$.ajax({
+ 	$.ajax({
 	url:fillselurl,
-	type: "GET",
-  
+	type: "GET",  
 //	contentType: false,
 //	processData: false,
 	//contentType: 'application/json',
@@ -163,14 +177,22 @@ function loadpages() {
 	};
 
 	loadpages() ;
+	
+ 
+});
 
-});
-//  function delrow() {
-// 	//$("#sortbody").closest("li").hide();
-// 	$("#sortbody").remove();
-// 	//event.preventDefault(); alert('+'\'hi\''+');
-	 
-// }
-$('.del-sort').on('mousedown', function () {
-	$("#sortbody").remove();
-});
+function delsort(button) {
+	var listItem = button.parentNode;
+	var dataId = listItem.getAttribute('data-id');
+	var handleText = listItem.querySelector('.dd-handle').textContent;
+	//delete
+	listItem.parentNode.removeChild(listItem);
+	// add to select
+	var select = document.getElementById('page_id');
+	var option = document.createElement('option');
+	option.value = dataId;
+	option.textContent = handleText;
+	select.appendChild(option);
+}
+ 
+ 

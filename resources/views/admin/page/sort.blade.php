@@ -92,4 +92,6 @@
 @section('css')
     <!-- JQuery Nestable Css -->
     <link href="{{ URL::asset('assets/admin/js/plugins/nestable/jquery-nestable.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/admin/css/custom.css') }}" rel="stylesheet" />
+    
 @endsection
