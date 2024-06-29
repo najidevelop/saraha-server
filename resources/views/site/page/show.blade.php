@@ -1,5 +1,6 @@
 @extends('site.layouts.layout')
 
+@section('page-title') - {{$page->title}} @endsection
 @section('content')
     <div class="content-all" style="width: 100%; height:auto;">
         <div class="part-country">

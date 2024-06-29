@@ -14,7 +14,7 @@
      <!-- Favicons -->
      <link href="{{ $mainarr['favicon']}}" rel="icon">  
   <title>
-    {{$mainarr['title']}} @yield('title')
+    {{$mainarr['title']}}   @yield('page-title') 
   </title>  
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
