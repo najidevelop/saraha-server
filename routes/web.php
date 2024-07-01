@@ -94,10 +94,10 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
         });
  ////////////////Clients///////////////////////
       
-            Route::resource('client', ClientController::class, ['except' => ['update']]);
+            Route::resource('client', ClientController::class, ['except' => ['update','destroy']]);
     Route::prefix('client')->group(function () {
         Route::post('/update/{id}', [ClientController::class, 'update'])->name('client.adminupdate');
-      
+        Route::delete('/delete/{id}', [ClientController::class, 'destroybyadmin']) ;
     });
        ////////////////social///////////////////////
 

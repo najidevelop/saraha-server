@@ -58,7 +58,7 @@
                                                                                            
                                         </div>
                                         <div class="col-sm-2">
-                                            <form method="POST" action="{{route('client.destroy', $user->id)}}" >
+                                            <form method="POST" action="{{url('admin/client/delete', $user->id)}}" >
                                                 @csrf
                                                 @method('DELETE')
                                             <a href="" title="حذف"   onclick="event.preventDefault();  this.closest('form').submit();">

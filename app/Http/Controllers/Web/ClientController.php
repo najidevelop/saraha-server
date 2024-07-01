@@ -392,6 +392,25 @@ $res = ClientSocial::updateOrCreate(
         return redirect()->back();
       }
     }
+    public function destroybyadmin($id)
+    {
+        $item = Client::find($id);
+      if (!( $item  === null)) {
+        //delete image
+        $oldimagename =$item->image;
+        $strgCtrlr = new StorageController();
+        $path = $strgCtrlr->path['clients'];
+        Storage::delete("public/" .$path. '/' . $oldimagename);        
+        //delete   MediaPost records
+        ClientSocial::where('client_id',$id)->delete();
+        MessageModel::where('sender_id',$id)->orWhere('recipient_id',$id)->delete();
+        Client::find($id)->delete();
+        Auth::guard('client')->logout();
+       
+      } 
+      return redirect()->back();
+    
+    }
     public function logout(Request $request): RedirectResponse
     {
       //  Auth::guard('web')->logout();
