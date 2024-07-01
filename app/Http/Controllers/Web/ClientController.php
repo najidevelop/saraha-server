@@ -35,7 +35,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+      $users = Client::get();
+      return view('admin.client.show', ['clients' => $users]);
     }
 
     /**

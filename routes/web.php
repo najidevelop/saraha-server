@@ -92,6 +92,13 @@ Route::middleware(['auth:web', 'verified'])->prefix('admin')->group(function () 
             Route::post('/updateprofile/{id}', [UserController::class, 'updateprofile'])->name('user.updateprofile');
     
         });
+ ////////////////Clients///////////////////////
+      
+            Route::resource('client', ClientController::class, ['except' => ['update']]);
+    Route::prefix('client')->group(function () {
+        Route::post('/update/{id}', [ClientController::class, 'update'])->name('client.adminupdate');
+      
+    });
        ////////////////social///////////////////////
 
        Route::resource('social', SocialController::class, ['except' => ['update']]);
